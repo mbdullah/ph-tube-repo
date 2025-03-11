@@ -32,6 +32,35 @@ const loadCategoriesVideos = (id) =>{
     })
 }
 
+const loadVideoDetails = (videoId) =>{
+    const url = `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayVideoDetails(data.video))
+}
+
+const displayVideoDetails = (video) =>{
+    console.log(video);
+    document.getElementById("show_modal").showModal();
+    const detailsContainer = document.getElementById("details-container");
+    detailsContainer.innerHTML =`
+    <div class="card bg-base-100 image-full shadow-sm">
+  <figure>
+    <img
+      src="${video.thumbnail}"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${video.title}</h2>
+    <p>${video.authors[0].profile_name}</p>
+    <p>${video.others.views} Views</p>
+    <p>${video.description}</p>
+  </div>
+</div>
+    `
+
+}
+
 function displayCategories(categories){
 
     const categoriesContainer = document.getElementById("category-container");
@@ -85,11 +114,12 @@ const displayVideos = (videos) => {
                   </div>
               </div>
               <div class="">
-                <h2 class="font-bold text-xl">Smells Like Teen Spirit</h2>
+                <h2 class="font-bold text-xl">${video.title}</h2>
                 <p class="flex text-[#17171770] items-center gap-3 my-2">${video.authors[0].profile_name}<img class="w-6 h-6" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt=""></p>
                 <p class="text-[#17171770]">${video.others.views} Views</p>
               </div>
-            </div>
+              </div>
+              <button onclick=loadVideoDetails('${video.video_id}') class="btn btn-wide-block hover:bg-[#FF1F3D] hover:text-white">Show Details</button>
           </div>
     `;
     videosContainer.append(videoCard);
