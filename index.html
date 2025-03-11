@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PH-TUBE</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .active{
+            background: #FF1F3D;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    
+    <!-- header section -->
+     <header>
+        <nav class="w-11/12 mx-auto flex justify-between border-b-2 border-[#17171720] py-8">
+            <div class="logo">
+                <img src="./assets/Logo.png" alt="">
+            </div>
+            <div class="sort">
+                <button class="btn bg-[#25252520] text-[#252525] text-[18px]">Sort by view</button>
+            </div>
+            <div class="blog">
+                <button class="btn bg-[#FF1F3D] text-white text-[18px]">Blog</button>
+            </div>
+        </nav>
+     </header>
+     <nav id="category-container"  class="flex justify-center py-8 space-x-5">
+        <div>
+            <button id="btn-all" onclick="loadVideos()" class="btn btn-sm  text-[16px]">All</button>
+        </div>
+     </nav>
+
+     <section class="w-11/12 mx-auto grid grid-cols-4 gap-10" id="videos-container">
+        <div class="col-span-full text-center flex flex-col justify-center items-center py-30">
+            <img src="./assets/Icon.png" alt="">
+            <h2 class="text-3xl font-bold mt-5">Oops!! Sorry, There is no <br>content here</h2>
+        </div>
+     </section>
+
+
+     <script src="./script/index.js"></script>
 </body>
 </html>
